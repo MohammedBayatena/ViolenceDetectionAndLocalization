@@ -34,11 +34,11 @@ format8:    # example of user-defined format (object tracking in videos)
 
 `	$ Object_detection_video --input ./path_to_video --generatehypo true`
 
-		*In case Model skipped frames where there were no object and a value in every frame is needed use the following script to add values where empty
+*In case Model skipped frames where there were no object and a value in every frame is needed use the following script to add values where empty
 
-		```bash
-		awk '{x=$1-b;while(x-->1){print ++b,",person,0,200,200,300,300,1""};b=$1}1' hypo.txt
-		```
+```bash
+awk '{x=$1-b;while(x-->1){print ++b,",person,0,200,200,300,300,1""};b=$1}1' hypo.txt
+```
 
 4. Run DarkLabelTxtToNormalizedTxt.py to convert raw txt files to json friendly format.
 
