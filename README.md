@@ -8,9 +8,7 @@ This code requires you have Keras 2 and TensorFlow 1.4 or greater installed. Ple
 
 `pip install -r requirements.txt`
 
-If you are Using `Tesnorflow2` Please use the Tesnorflow2 Compatible project in the link below.
-
-https://www.linkhere.com 
+If you are Using `Tesnorflow2` Please Download the Tesnorflow2 Compatible version from [here](https://u.pcloud.link/publink/show?code=XZF4NLXZlswIn8RHl8FgYSsjnYuBwpRFjL6V)
  
  
 ## How to run
