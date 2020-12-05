@@ -21,7 +21,7 @@ All models are trained on Kinetics-400 and coco dataset.
 
 2. Extract the Downloaded files to 
 >	| ViolenceDetectionAndLocalization
-> >		...
+> >		.
 
 3. Run the video classfier using 
 
