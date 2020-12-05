@@ -1,0 +1,5 @@
+
+https://cocalc.com/projects/990f312a-dc49-4392-8eee-afb7c74bad12/files/2020-11-16-211559.term?anonymous=terminal&session=default  << use this server
+FILL missing hypoframes with some value so it can be used with pymot >>> until its fixed later by me
+
+awk '{x=$1-b;while(x-->1){print ++b,",person,0,200,200,300,300,1""};b=$1}1' hypo.txt 
