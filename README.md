@@ -13,7 +13,7 @@ If you are Using `Tesnorflow2` Please use the Tesnorflow2 Compatible project in 
 https://www.linkhere.com 
  
  
-##How to run
+## How to run
 
 1. Download the Pre-trained models Kinetics model and lables and the TensorFlow .pb , .pptxt files from [here](https://u.pcloud.link/publink/show?code=kZlcALXZplDJ4el6eKjNYLPcbHGXsX7qmfV7).
 
