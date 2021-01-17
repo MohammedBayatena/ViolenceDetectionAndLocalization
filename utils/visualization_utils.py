@@ -54,6 +54,8 @@ from six.moves import range
 from six.moves import zip
 import tensorflow.compat.v1 as tf
 from pathlib import Path
+import math
+# from regions import BoundingBox
 
 from .core import keypoint_ops
 from .core import standard_fields as fields
@@ -93,11 +95,46 @@ maximax =1
 label = ""
 labelslist=[]
 
+Violenceboxeslist=[]
+
 
 txtfile = open("hypotheses.txt", "w")
 
 # Grab path to current working directory
 CWD_PATH = os.getcwd()
+
+
+class ViolenceBox:
+  def __init__(self, BoxNumber, ymin,xmin,ymax,xmax):
+    self.BoxNumber = BoxNumber
+    self.ymin = ymin
+    self.xmin = xmin
+    self.ymax = ymax
+    self.xmax = xmax
+
+    # def area(box):
+    #     """Area of this instance"""
+    #     area = abs(box.ymax-box.ymin)*abs(box.xmax-box.xmin)
+    #     if (area != 0):
+    #         return area
+    #     else:
+    #         return .0001  # small value to compinsate frames were width and hight of some object is 0
+    #
+    # def intersect(box1,box2 ):
+    #     """Create new Rect from intersection of self and o. Cave: id and dco will be lost."""
+    #     newbox= None
+    #     newbox.xmin = max(box1.xmin, box2.xmin)
+    #     box["y"] = max(self.y_, o.y_)
+    #     box["width"] = max(0, min(self.x_ + self.w_, o.x_ + o.w_) - box["x"])
+    #     box["height"] = max(0, min(self.y_ + self.h_, o.y_ + o.h_) - box["y"])
+    #     box["id"] = "intersect"
+    #     return Rect(box)
+    #
+    # def overlap(self, o):
+    #     """Overlap of this and other Rect o"""
+    #     ia = self.intersect(o).area()
+    #     union = self.area() + o.area() - ia
+    #     return float(ia) / union
 
 
 def _get_multiplier_for_color_randomness():
@@ -267,6 +304,7 @@ def draw_bounding_box_on_image(frameno,boxnumber,myimage,image,
     global maximax    #How many boxes is there
     global label      #what the result of the detetion was
     global labelslist
+    global Violenceboxeslist
 
 
     if (boxnumber >= maximax):
@@ -348,6 +386,43 @@ def draw_bounding_box_on_image(frameno,boxnumber,myimage,image,
     (left, right, top, bottom) = (xmin, xmax, ymin, ymax)
   if thickness > 0:
     if (labelslist[boxnumber - 1] == "Violence"):
+
+        if (len(Violenceboxeslist) >= 2):
+
+            for i in range(0,len(Violenceboxeslist)):
+                for j in range(i+1,len(Violenceboxeslist)):
+                    # Centroid Calculations
+                    #box1
+                    cX = int((Violenceboxeslist[i].xmin + Violenceboxeslist[i].xmax) / 2.0)
+                    cY = int((Violenceboxeslist[i].ymin + Violenceboxeslist[i].ymax) / 2.0)
+                    #box2
+                    cX1 = int((Violenceboxeslist[j].xmin + Violenceboxeslist[j].xmax) / 2.0)
+                    cY1 = int((Violenceboxeslist[j].ymin + Violenceboxeslist[j].ymax) / 2.0)
+                    # Caclulates Euclidean distance between centroids
+
+                    #eDistance = math.dist([cX, cY], [cX1, cY1]) # Needs python 3.8+
+                    eDistance = math.sqrt(((cX - cX1) ** 2) + ((cY - cY1) ** 2))
+
+                    #print("Eucledean Distance is :"+str(eDistance))
+
+                    if (eDistance < 90):  #90 is the threshold of which merging between boxes will happen
+                        #print("Intersection")
+                        (left, right, top, bottom) = (min(Violenceboxeslist[i].xmin ,Violenceboxeslist[j].xmin), max(Violenceboxeslist[i].xmax ,Violenceboxeslist[j].xmax),
+                                                      min(Violenceboxeslist[i].ymin ,Violenceboxeslist[j].ymin), max(Violenceboxeslist[i].ymax,Violenceboxeslist[j].ymax))
+        if boxnumber in Violenceboxeslist: # if box already exist then update it
+            for n in range(0,len(Violenceboxeslist)):
+                if Violenceboxeslist[n].boxnumber == boxnumber:
+                    (Violenceboxeslist[n].ymin,Violenceboxeslist[n].xmin,Violenceboxeslist[n].ymax,Violenceboxeslist[n].xmax)=(ymin * im_height, xmin * im_width, ymax * im_height, xmax * im_width)
+        else: #if not exist check if its having a new id but same box then if not append
+            flag=0
+            for n in range(0, len(Violenceboxeslist)):
+                if abs(Violenceboxeslist[n].ymin - ymin*im_height) < 5 and abs(Violenceboxeslist[n].xmin - xmin*im_width) < 5 :
+                    flag=1
+            if not flag:
+                    Violenceboxeslist.append(ViolenceBox(boxnumber,ymin*im_height,xmin*im_width,ymax*im_height,xmax*im_width))
+            else:
+                print("Box have changed its ID")
+
         line = str(frameno - 1) + ',' + "Violence" + ',' + str(int(boxnumber - 1)) + ',' + str(int(left)) + ',' + str(int(right)) + ',' + str(int(top)) + ',' + str(int(bottom)) + ',' + "0" + "\n"
         txtfile.write(line) #----------------> Write Violence frames here
         color = 'blue'
@@ -355,10 +430,10 @@ def draw_bounding_box_on_image(frameno,boxnumber,myimage,image,
     #     line = str(frameno - 1) + ',' + "person" + ',' + str(int(boxnumber - 1)) + ',' + str(int(left)) + ',' + str(
     #         int(right)) + ',' + str(int(top)) + ',' + str(int(bottom)) + ',' + "0" + "\n"
     #     txtfile.write(line)  # ----------------> Write Violence frames here   #if we need the other Boxes or lables than thsan Violence we enable this one
-    draw.line([(left, top), (left, bottom), (right, bottom), (right, top),
-               (left, top)],
-              width=thickness,
-              fill=color)
+        draw.line([(left, top), (left, bottom), (right, bottom), (right, top),
+                   (left, top)],
+                  width=thickness,
+                  fill=color)
   try:
     font = ImageFont.truetype('arial.ttf', 24)
   except IOError:
@@ -403,7 +478,7 @@ def draw_bounding_boxes_on_image_array(image,
                                        boxes,
                                        color='red',
                                        thickness=4,
-                                       display_str_list_list=()):
+                                       display_str_list_list=(), myimage=None):
   """Draws bounding boxes on image (numpy array).
 
   Args:
@@ -612,21 +687,6 @@ def visualize_boxes_and_labels_on_image_array(
     boxnumber+=1
     print("Box number %d :: " % boxnumber)
 
-    if instance_masks is not None:
-      draw_mask_on_image_array(
-          image,
-          box_to_instance_masks_map[box],
-          color=color
-      )
-    if instance_boundaries is not None:
-      draw_mask_on_image_array(
-          image,
-          box_to_instance_boundaries_map[box],
-          color='red',
-          alpha=1.0
-      )
-
-
     draw_bounding_box_on_image_array(
         frameno,
         boxnumber,
@@ -639,20 +699,6 @@ def visualize_boxes_and_labels_on_image_array(
         thickness=0 if skip_boxes else line_thickness,
         display_str_list=box_to_display_str_map[box],
         use_normalized_coordinates=use_normalized_coordinates)
-    if keypoints is not None:
-      keypoint_scores_for_box = None
-      if box_to_keypoint_scores_map:
-        keypoint_scores_for_box = box_to_keypoint_scores_map[box]
-      draw_keypoints_on_image_array(
-          image,
-          box_to_keypoints_map[box],
-          keypoint_scores_for_box,
-          min_score_thresh=min_score_thresh,
-          color=color,
-          radius=line_thickness / 2,
-          use_normalized_coordinates=use_normalized_coordinates,
-          keypoint_edges=keypoint_edges,
-          keypoint_edge_color=color,
-          keypoint_edge_width=line_thickness // 2)
+    
 
   return image

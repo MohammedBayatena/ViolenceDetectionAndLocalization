@@ -34,7 +34,7 @@ from utils import visualization_utils as vis_util
 
 # Name of the directory containing the object detection module we're using
 MODEL_NAME = 'inference_graph'
-VIDEO_NAME = '5.avi'
+VIDEO_NAME = '12.mp4'
 txtfile = open("hypotheses.txt", "w")
 # Grab path to current working directory
 CWD_PATH = os.getcwd()
