@@ -1,0 +1,23 @@
+
+For the people fighting in street video , using my detector, for 303 frames and dark label, hypp and gedd are the files i used
+
+
+
+(venv) C:\Users\Hatsune Miku\Desktop\Temp Work\Graduation project\Metrics-accuracy task\pymot-master>python pymot.py -a grdd.json -b hypp.json -c
+Track statistics
+Lonely ground truth tracks 0
+Total ground truth tracks  4
+Lonely hypothesis tracks 0
+Total hypothesis tracks  4
+
+Results
+Ground truths               757
+False positives             78
+Misses                      152
+Mismatches                  175
+Recoverable mismatches      168
+Non recoverable mismatches  161
+Correspondences             605
+
+('MOTP', 0.6004665503930514)
+('MOTA', 0.464993394980185)

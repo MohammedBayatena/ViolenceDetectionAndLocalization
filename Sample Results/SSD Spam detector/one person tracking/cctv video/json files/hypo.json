@@ -1,0 +1,278 @@
+[
+    {
+        "frames": [
+            {
+                "timestamp": 2.8167,
+                "num": 169,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 145,
+                        "width": 43,
+                        "id": "0",
+                        "y": 290,
+                        "x": 238
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.0333,
+                "num": 182,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 150,
+                        "width": 36,
+                        "id": "0",
+                        "y": 256,
+                        "x": 203
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.05,
+                "num": 183,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 151,
+                        "width": 36,
+                        "id": "0",
+                        "y": 256,
+                        "x": 202
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.0667,
+                "num": 184,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 153,
+                        "width": 44,
+                        "id": "0",
+                        "y": 248,
+                        "x": 204
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.0833,
+                "num": 185,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 156,
+                        "width": 43,
+                        "id": "0",
+                        "y": 245,
+                        "x": 201
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.1,
+                "num": 186,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 158,
+                        "width": 46,
+                        "id": "0",
+                        "y": 244,
+                        "x": 197
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.1167,
+                "num": 187,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 160,
+                        "width": 49,
+                        "id": "0",
+                        "y": 241,
+                        "x": 186
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.1333,
+                "num": 188,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 160,
+                        "width": 51,
+                        "id": "0",
+                        "y": 235,
+                        "x": 178
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.3667,
+                "num": 202,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 168,
+                        "width": 69,
+                        "id": "0",
+                        "y": 182,
+                        "x": 129
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.3833,
+                "num": 203,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 168,
+                        "width": 69,
+                        "id": "0",
+                        "y": 181,
+                        "x": 127
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.4,
+                "num": 204,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 167,
+                        "width": 70,
+                        "id": "0",
+                        "y": 173,
+                        "x": 123
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.4167,
+                "num": 205,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 167,
+                        "width": 69,
+                        "id": "0",
+                        "y": 172,
+                        "x": 123
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.5167,
+                "num": 211,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 177,
+                        "width": 69,
+                        "id": "0",
+                        "y": 143,
+                        "x": 102
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.5333,
+                "num": 212,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 179,
+                        "width": 70,
+                        "id": "0",
+                        "y": 143,
+                        "x": 99
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.55,
+                "num": 213,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 182,
+                        "width": 71,
+                        "id": "0",
+                        "y": 139,
+                        "x": 96
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.5667,
+                "num": 214,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 178,
+                        "width": 73,
+                        "id": "0",
+                        "y": 135,
+                        "x": 84
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.5833,
+                "num": 215,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 178,
+                        "width": 73,
+                        "id": "0",
+                        "y": 134,
+                        "x": 84
+                    }
+                ]
+            },
+            {
+                "timestamp": 3.6,
+                "num": 216,
+                "class": "frame",
+                "hypotheses": [
+                    {
+                        "dco": false,
+                        "height": 180,
+                        "width": 72,
+                        "id": "0",
+                        "y": 133,
+                        "x": 81
+                    }
+                ]
+            }
+        ],
+        "class": "video",
+        "filename": "c:/Desktop/myfile/file.txt"
+    }
+]

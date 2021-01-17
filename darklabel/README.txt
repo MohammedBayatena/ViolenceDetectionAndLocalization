@@ -1,0 +1,1 @@
+Copy and paste darklable.yml in your darklabel installation folder to add the annotation profile needed for Json Generator to work.
